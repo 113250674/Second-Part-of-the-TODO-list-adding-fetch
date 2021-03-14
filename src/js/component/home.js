@@ -12,7 +12,7 @@ export function Home() {
 	const agregarTarea = () => {
 		enviarTarea();
 		setlistaTareas([...listaTareas, { label: tarea, done: false }]);
-		useState("");
+		setTarea("");
 	};
 
 	/*----------- */
