@@ -7,7 +7,7 @@ export function Home() {
 
 	useEffect(() => {
 		traerTarea();
-	}, [listaTareas]);
+	}, []);
 
 	const agregarTarea = () => {
 		enviarTarea();
@@ -17,14 +17,14 @@ export function Home() {
 
 	/*----------- */
 	const DeleteItems = indexItem => {
-		setlistaTareas(prevState =>
-			prevState.filter((todo, index) => index !== indexItem)
-		);
-		console.log(listaTareas);
 		var myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
 
-		var raw = JSON.stringify(listaTareas);
+		let listaNueva = listaTareas.filter(
+			(todo, index) => index !== indexItem
+		);
+
+		var raw = JSON.stringify(listaNueva);
 
 		var requestOptions = {
 			method: "PUT",
@@ -38,7 +38,7 @@ export function Home() {
 			requestOptions
 		)
 			.then(response => response.json())
-			.then(result => console.log(result))
+			.then(result => traerTarea())
 			.catch(error => console.log("error", error));
 	};
 	/* -------- */
